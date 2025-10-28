@@ -1,0 +1,435 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Club de Programmation et Intelligence Artificielle - Lycée Liberté Jendouba</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary-color: #0d6efd;
+            --secondary-color: #6c757d;
+            --dark-color: #212529;
+            --light-color: #f8f9fa;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            scroll-behavior: smooth;
+        }
+
+        .hero-section {
+            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+            color: white;
+            padding-top: 80px;
+        }
+
+        .section-title {
+            position: relative;
+            display: inline-block;
+            margin-bottom: 1rem;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 3px;
+            background-color: var(--primary-color);
+        }
+
+        .navbar-brand {
+            font-weight: 700;
+        }
+
+        .card {
+            transition: transform 0.3s ease;
+            border: none;
+            border-radius: 10px;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+        }
+
+        .contact-icon {
+            color: var(--primary-color);
+        }
+
+        .btn-primary {
+            background-color: var(--primary-color);
+            border-color: var(--primary-color);
+            padding: 10px 25px;
+            font-weight: 600;
+        }
+
+        .btn-primary:hover {
+            background-color: #0b5ed7;
+            border-color: #0a58ca;
+            transform: translateY(-2px);
+            transition: all 0.3s;
+        }
+
+        .alert-info {
+            background-color: rgba(13, 110, 253, 0.1);
+            border-color: rgba(13, 110, 253, 0.2);
+            color: #084298;
+            border-radius: 10px;
+        }
+
+        .feature-icon {
+            font-size: 2.5rem;
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+        }
+
+        .countdown {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: var(--primary-color);
+        }
+
+        .free-badge {
+            background-color: #28a745;
+            color: white;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-weight: bold;
+            display: inline-block;
+            margin-bottom: 15px;
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            .hero-section .row {
+                text-align: center;
+            }
+            
+            .display-4 {
+                font-size: 2.5rem;
+            }
+        }
+
+        .logo {
+            width: 50px;
+            height: 50px;
+            margin-right: 10px;
+        }
+        
+        .formateur-card {
+            border-left: 5px solid var(--primary-color);
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+        <div class="container">
+            <a class="navbar-brand" href="#">
+                <svg class="logo" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                    <defs>
+                        <linearGradient id="gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                            <stop offset="0%" stop-color="#4A00E0" />
+                            <stop offset="100%" stop-color="#8E2DE2" />
+                        </linearGradient>
+                    </defs>
+                    <circle cx="50" cy="50" r="45" fill="url(#gradient)" />
+                    <path d="M30,35 L45,35 L45,50 L60,50 L60,65 L45,65 L45,50 L30,50 Z" fill="white" />
+                    <circle cx="70" cy="35" r="8" fill="white" />
+                    <circle cx="70" cy="65" r="8" fill="white" />
+                    <path d="M30,65 L30,80 L45,80 L45,65" fill="white" />
+                </svg>
+                Club IA & Programmation
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#accueil">Accueil</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#activites">Activités</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#inscription">Inscription</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#contact">Contact</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="accueil" class="hero-section">
+        <div class="container">
+            <div class="row align-items-center min-vh-100">
+                <div class="col-lg-6">
+                    <h1 class="display-4 fw-bold mb-4">Club de Programmation et Intelligence Artificielle</h1>
+                    <p class="lead mb-4">Découvrez le monde fascinant de l'intelligence artificielle et de la programmation. Rejoignez notre club pour explorer, apprendre et créer ensemble.</p>
+                    <div class="alert alert-info mb-4">
+                        <h5 class="alert-heading"><i class="fas fa-rocket me-2"></i>Début des activités : 7 novembre 2025</h5>
+                        <p class="mb-0">Inscrivez-vous dès maintenant pour ne pas manquer cette opportunité unique !</p>
+                        <div class="countdown mt-2" id="countdown"></div>
+                    </div>
+                    <a href="#inscription" class="btn btn-primary btn-lg me-3">S'inscrire maintenant</a>
+                    <a href="#activites" class="btn btn-outline-light btn-lg">Découvrir les activités</a>
+                </div>
+                <div class="col-lg-6 text-center">
+                    <img src="https://images.unsplash.com/photo-1535223289827-42f1e9919769?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=600&q=80" alt="Programmation et collaboration" class="img-fluid rounded shadow">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Activités Section -->
+    <section id="activites" class="py-5 bg-light">
+        <div class="container">
+            <div class="row mb-5">
+                <div class="col-12 text-center">
+                    <h2 class="section-title">Nos Activités</h2>
+                    <p class="lead">Découvrez ce que nous allons apprendre et créer ensemble</p>
+                </div>
+            </div>
+            <div class="row g-4">
+                <div class="col-md-4">
+                    <div class="card h-100 shadow-sm">
+                        <img src="https://images.unsplash.com/photo-1517077304055-6e89abbf09b0?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=600&q=80" class="card-img-top" alt="Programmation collaborative">
+                        <div class="card-body">
+                            <div class="feature-icon">
+                                <i class="fas fa-brain"></i>
+                            </div>
+                            <h5 class="card-title">Intelligence Artificielle</h5>
+                            <p class="card-text">Apprenez les bases de l'IA, les algorithmes de machine learning, et créez vos premiers modèles prédictifs.</p>
+                            <ul class="list-unstyled">
+                                <li><i class="fas fa-check text-success me-2"></i>Introduction à l'IA</li>
+                                <li><i class="fas fa-check text-success me-2"></i>Machine Learning</li>
+                                <li><i class="fas fa-check text-success me-2"></i>Réseaux de neurones</li>
+                                <li><i class="fas fa-check text-success me-2"></i>Projets pratiques</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card h-100 shadow-sm">
+                        <img src="https://images.unsplash.com/photo-1542831371-29b0f74f9713?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" class="card-img-top" alt="Programmation">
+                        <div class="card-body">
+                            <div class="feature-icon">
+                                <i class="fas fa-code"></i>
+                            </div>
+                            <h5 class="card-title">Programmation</h5>
+                            <p class="card-text">Maîtrisez les langages de programmation essentiels pour le développement d'applications et l'analyse de données.</p>
+                            <ul class="list-unstyled">
+                                <li><i class="fas fa-check text-success me-2"></i>Python pour l'IA</li>
+                                <li><i class="fas fa-check text-success me-2"></i>Algorithmes et structures de données</li>
+                                <li><i class="fas fa-check text-success me-2"></i>Développement web</li>
+                                <li><i class="fas fa-check text-success me-2"></i>Projets collaboratifs</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card h-100 shadow-sm">
+                        <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" class="card-img-top" alt="Analyse de données">
+                        <div class="card-body">
+                            <div class="feature-icon">
+                                <i class="fas fa-chart-bar"></i>
+                            </div>
+                            <h5 class="card-title">Analyse de Données</h5>
+                            <p class="card-text">Explorez le monde des données, apprenez à les collecter, les analyser et en extraire des informations précieuses.</p>
+                            <ul class="list-unstyled">
+                                <li><i class="fas fa-check text-success me-2"></i>Visualisation de données</li>
+                                <li><i class="fas fa-check text-success me-2"></i>Statistiques appliquées</li>
+                                <li><i class="fas fa-check text-success me-2"></i>Outils d'analyse</li>
+                                <li><i class="fas fa-check text-success me-2"></i>Études de cas réels</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Inscription Section -->
+    <section id="inscription" class="py-5">
+        <div class="container">
+            <div class="row mb-5">
+                <div class="col-12 text-center">
+                    <h2 class="section-title">Comment s'inscrire</h2>
+                    <p class="lead">Rejoignez notre club dès maintenant - L'inscription est totalement gratuite !</p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-8 mx-auto">
+                    <div class="card shadow-sm">
+                        <div class="card-body p-5">
+                            <div class="free-badge">
+                                <i class="fas fa-gift me-2"></i>Inscription totalement gratuite
+                            </div>
+                            <h3 class="card-title mb-4">Deux façons de s'inscrire :</h3>
+                            
+                            <div class="row mb-4">
+                                <div class="col-md-6">
+                                    <div class="d-flex align-items-start mb-4">
+                                        <div class="me-3 mt-1">
+                                            <i class="fas fa-envelope fa-2x text-primary"></i>
+                                        </div>
+                                        <div>
+                                            <h5>Par email</h5>
+                                            <p class="mb-1">Envoyez un email à :</p>
+                                            <a href="mailto:teacher.4630@tarbia.tn" class="h5 text-primary">teacher.4630@tarbia.tn</a>
+                                            <p class="mt-2 small text-muted">Indiquez votre nom, prénom et classe</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="d-flex align-items-start mb-4">
+                                        <div class="me-3 mt-1">
+                                            <i class="fas fa-user-tie fa-2x text-primary"></i>
+                                        </div>
+                                        <div>
+                                            <h5>Contacter le formateur</h5>
+                                            <p class="h5 text-primary mb-1">MEZNI Kamel</p>
+                                            <p class="mt-2 small text-muted">Professeur principal émérite</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="alert alert-info mt-4">
+                                <h5><i class="fas fa-info-circle me-2"></i>Informations importantes</h5>
+                                <ul class="mb-0">
+                                    <li>L'inscription est ouverte à tous les élèves du lycée</li>
+                                    <li>Aucun frais d'inscription - activité entièrement gratuite</li>
+                                    <li>Début des activités : 7 novembre 2025</li>
+                                    <li>Lieu : Laboratoire N4, Lycée Liberté Jendouba</li>
+                                    <li>Horaire : Chaque vendredi de 14h à 16h</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Formateur Section -->
+            <div class="row mt-5">
+                <div class="col-md-8 mx-auto">
+                    <div class="card formateur-card shadow-sm">
+                        <div class="card-body p-4">
+                            <div class="row align-items-center">
+                                <div class="col-md-3 text-center">
+                                    <i class="fas fa-user-tie fa-5x text-primary mb-3"></i>
+                                </div>
+                                <div class="col-md-9">
+                                    <h4 class="card-title">Responsable du Club</h4>
+                                    <h3 class="text-primary">MEZNI Kamel</h3>
+                                    <p class="card-text">Professeur principal émérite</p>
+                                    <p class="card-text">Le club fonctionne sous la direction du Lycée Liberté Jendouba</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-5 bg-light">
+        <div class="container">
+            <div class="row mb-5">
+                <div class="col-12 text-center">
+                    <h2 class="section-title">Contactez-nous</h2>
+                    <p class="lead">N'hésitez pas à nous contacter pour plus d'informations</p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-8 mx-auto">
+                    <div class="row text-center">
+                        <div class="col-md-4 mb-4">
+                            <div class="card border-0 shadow-sm h-100">
+                                <div class="card-body">
+                                    <div class="contact-icon mb-3">
+                                        <i class="fas fa-phone fa-2x"></i>
+                                    </div>
+                                    <h5>Téléphone</h5>
+                                    <p class="mb-0">22 625 058</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4 mb-4">
+                            <div class="card border-0 shadow-sm h-100">
+                                <div class="card-body">
+                                    <div class="contact-icon mb-3">
+                                        <i class="fas fa-envelope fa-2x"></i>
+                                    </div>
+                                    <h5>Email</h5>
+                                    <p class="mb-0">teacher.4630@tarbia.tn</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4 mb-4">
+                            <div class="card border-0 shadow-sm h-100">
+                                <div class="card-body">
+                                    <div class="contact-icon mb-3">
+                                        <i class="fas fa-map-marker-alt fa-2x"></i>
+                                    </div>
+                                    <h5>Adresse</h5>
+                                    <p class="mb-0">Laboratoire N4<br>Lycée Liberté Jendouba</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-dark text-white py-4">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-md-6">
+                    <p class="mb-0">&copy; 2025 Club de Programmation et Intelligence Artificielle - Lycée Liberté Jendouba</p>
+                    <p class="mb-0 small">Sous la direction de MEZNI Kamel, Professeur principal émérite</p>
+                </div>
+                <div class="col-md-6 text-md-end">
+                    <p class="mb-0">Rejoignez-nous chaque vendredi de 14h à 16h</p>
+                    <p class="mb-0 small">Inscription totalement gratuite</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // Script pour le compte à rebours
+        function updateCountdown() {
+            const startDate = new Date('November 7, 2025 00:00:00').getTime();
+            const now = new Date().getTime();
+            const distance = startDate - now;
+            
+            const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+            
+            document.getElementById("countdown").innerHTML = `${days}j ${hours}h ${minutes}m ${seconds}s`;
+            
+            if (distance < 0) {
+                document.getElementById("countdown").innerHTML = "Les activités ont commencé!";
+            }
+        }
+        
+        setInterval(updateCountdown, 1000);
+        updateCountdown();
+    </script>
+</body>
+</html>
