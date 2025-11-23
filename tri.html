@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Les algorithmes de tri</title>
+
+    <!-- Bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <style>
+        body {
+            background: #f5f6fa;
+            font-family: "Segoe UI", Arial, sans-serif;
+        }
+
+        /* --- HEADER --- */
+        .school-header {
+            text-align: center;
+            padding: 40px 20px 10px 20px;
+        }
+
+        .school-name {
+            font-size: 45px;
+            font-weight: 800;
+            color: #2c3e50;
+            letter-spacing: 1px;
+        }
+
+        .club-name {
+            font-size: 28px;
+            margin-top: 5px;
+            color: #34495e;
+            font-weight: 600;
+            text-transform: uppercase;
+        }
+
+        .page-title {
+            text-align: center;
+            margin-top: 20px;
+            margin-bottom: 40px;
+            font-size: 48px;
+            font-weight: 800;
+            color: #1a5276;
+            text-shadow: 1px 1px 2px #d0d3d4;
+        }
+
+        /* --- CARDS --- */
+        .card {
+            border-radius: 18px;
+            padding: 30px;
+            background: white;
+            box-shadow: 0px 4px 12px rgba(0,0,0,0.12);
+            transition: 0.3s;
+        }
+
+        .card:hover {
+            transform: scale(1.04);
+            box-shadow: 0px 6px 18px rgba(0,0,0,0.20);
+        }
+
+        .btn-lg {
+            padding: 15px 30px;
+            font-size: 22px;
+            border-radius: 12px;
+        }
+
+        /* --- FOOTER --- */
+        footer {
+            background: #2c3e50;
+            padding: 20px;
+            margin-top: 50px;
+            text-align: center;
+            color: white;
+            font-size: 20px;
+            font-weight: 600;
+        }
+
+        /* Container size */
+        .container { 
+            max-width: 1200px; 
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- HEADER -->
+    <div class="school-header">
+        <div class="school-name">Lycée Liberté Jendouba</div>
+        <div class="club-name">Club Programmation et IA</div>
+    </div>
+
+    <!-- TITLE -->
+    <h1 class="page-title">Les Algorithmes de Tri</h1>
+
+    <!-- CONTENT -->
+    <div class="container">
+        <div class="row g-4">
+
+            <!-- TRI A BULLES -->
+            <div class="col-md-4">
+                <div class="card text-center">
+                    <h3>Tri à bulles</h3>
+                    <p class="mt-3">
+                        Le tri à bulles compare les éléments deux par deux et les échange s’ils ne sont pas dans le bon ordre.
+                        Le processus se répète jusqu’à ce que tout soit trié.
+                    </p>
+                    <a href="bulle.html" class="btn btn-primary btn-lg mt-3">
+                        Tri à bulles – Simulation
+                    </a>
+                </div>
+            </div>
+
+            <!-- TRI PAR SÉLECTION -->
+            <div class="col-md-4">
+                <div class="card text-center">
+                    <h3>Tri par sélection</h3>
+                    <p class="mt-3">
+                        Le tri par sélection cherche le plus petit élément de la liste et le place à sa position finale.
+                        On répète l’opération pour chaque position du tableau.
+                    </p>
+                    <a href="selection.html" class="btn btn-success btn-lg mt-3">
+                        Tri par sélection – Simulation
+                    </a>
+                </div>
+            </div>
+
+            <!-- TRI PAR INSERTION -->
+            <div class="col-md-4">
+                <div class="card text-center">
+                    <h3>Tri par insertion</h3>
+                    <p class="mt-3">
+                        Le tri par insertion insère chaque élément à sa place dans une portion déjà triée du tableau.
+                        On construit le tableau trié élément par élément.
+                    </p>
+                    <a href="insertion.html" class="btn btn-warning btn-lg mt-3">
+                        Tri par insertion – Simulation
+                    </a>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- FOOTER -->
+    <footer>
+        Enseignant : MEZNI Kamel
+    </footer>
+
+</body>
+</html>

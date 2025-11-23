@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<title>Tri à bulle</title>
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        text-align: center;
+        background: #f5f6fa;
+        margin: 0;
+        padding: 20px;
+    }
+
+    h1 {
+        font-size: 40px;
+        margin-bottom: 20px;
+    }
+
+    /* Conteneur centré */
+    .container {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    /* Cases du tableau auto-ajustées */
+    .array-container {
+        display: flex;
+        justify-content: center;
+        gap: 8px;
+        flex-wrap: wrap;
+        margin-bottom: 25px;
+    }
+
+    .array-item {
+        padding: 6px 10px;
+        font-size: 18px;
+        text-align: center;
+        min-width: 40px;
+        border: 1px solid #ccc;
+        border-radius: 6px;
+        transition: background 0.3s, color 0.3s;
+    }
+
+    .swap-highlight {
+        background: #ff9800 !important;
+        color: white;
+        border-color: #e68900;
+    }
+
+    /* Boutons */
+    button {
+        padding: 10px 18px;
+        margin: 5px;
+        border-radius: 8px;
+        border: none;
+        font-size: 18px;
+        cursor: pointer;
+        color: white;
+    }
+
+    #loadBtn { background: #2e7d32; }
+    #autoBtn { background: #1565c0; }
+    #stepBtn { background: #f9a825; color: black; }
+    #stopBtn { background: #c62828; }
+
+    /* Barres du graphique améliorées */
+    .bar {
+        width: 55px;                   /* ← PLUS LARGE */
+        margin: 0 8px;
+        background: #2ecc71;
+        border-radius: 6px;
+        display: flex;
+        align-items: center;           /* ← Centrage vertical */
+        justify-content: center;       /* ← Centrage horizontal */
+        padding-bottom: 6px;           /* ← VISIBILITÉ DU CHIFFRE */
+        color: white;
+        font-weight: bold;
+        font-size: 20px;               /* ← Chiffres plus lisibles */
+        transition: all 0.4s ease;
+    }
+
+    .bar.swap {
+        background: #e91e63 !important;
+    }
+
+    .graph-container {
+        display: flex;
+        justify-content: center;
+        align-items: flex-end;
+        height: 350px;
+    }
+</style>
+</head>
+
+<body>
+    <div class="text-center mt-4 mb-4">
+        <a href="index.html" 
+           class="btn btn-light btn-lg shadow"
+           style="
+                padding: 18px 40px;
+                font-size: 26px;
+                border-radius: 18px;
+                font-weight: 600;
+                color: #2c3e50;
+           ">
+            🏠 ⬅ Retour à la page principale
+        </a>
+    </div>
+    
+    <h1>Lycée Liberté Jendouba</h1>
+    <h2>Club Programmation et Intelligence Artificielle</h2>
+<h2>Le Tri à Bulle</h2>
+
+<div class="container">
+
+    <!-- Tableau -->
+    <div id="array" class="array-container"></div>
+
+    <!-- Commandes -->
+    <div>
+        <button id="loadBtn">Charger</button>
+        <button id="autoBtn">Démarrer Auto</button>
+        <button id="stepBtn">Pas à pas</button>
+        <button id="stopBtn">Arrêter</button>
+    </div>
+
+    <br>
+
+    <!-- Graphique -->
+    <div id="graph" class="graph-container"></div>
+
+</div>
+<div><h2>Enseignant : MEZNI Kamel</h2>
+<h3>Email : teacher.4630@tarbia.tn</h3>
+</div>
+
+<script>
+/* -----------------------------
+   Variables globales
+------------------------------*/
+let values = [];
+let i = 0, j = 0;
+let interval = null;
+
+/* -----------------------------
+   Génération aléatoire
+------------------------------*/
+function generateRandomArray() {
+    let arr = [];
+    for (let k = 0; k < 10; k++) {
+        arr.push(Math.floor(Math.random() * 20) + 1);
+    }
+    return arr;
+}
+
+/* -----------------------------
+   Affichage tableau
+------------------------------*/
+function renderArray() {
+    const arrayDiv = document.getElementById("array");
+    arrayDiv.innerHTML = "";
+
+    values.forEach((v, idx) => {
+        let item = document.createElement("div");
+        item.className = "array-item";
+        item.textContent = v;
+        item.dataset.index = idx;
+        arrayDiv.appendChild(item);
+    });
+}
+
+/* -----------------------------
+   Affichage graphique (barres)
+------------------------------*/
+function renderBars(highlightA = -1, highlightB = -1) {
+    const graph = document.getElementById("graph");
+    graph.innerHTML = "";
+
+    values.forEach((value, index) => {
+        let bar = document.createElement("div");
+        bar.className = "bar";
+        bar.style.height = value * 12 + "px"; // ← hauteur plus grande
+        bar.textContent = value;
+
+        if (index === highlightA || index === highlightB) {
+            bar.classList.add("swap");
+        }
+
+        graph.appendChild(bar);
+    });
+}
+
+/* -----------------------------
+   Surbrillance échange
+------------------------------*/
+function highlightSwap(a, b) {
+    document.querySelectorAll(".array-item").forEach(el =>
+        el.classList.remove("swap-highlight")
+    );
+
+    document.querySelector(`[data-index='${a}']`).classList.add("swap-highlight");
+    document.querySelector(`[data-index='${b}']`).classList.add("swap-highlight");
+
+    renderBars(a, b);
+}
+
+/* -----------------------------
+   Animation échange
+------------------------------*/
+function animateSwap(a, b) {
+    highlightSwap(a, b);
+
+    return new Promise(res => {
+        setTimeout(() => {
+            [values[a], values[b]] = [values[b], values[a]];
+            renderArray();
+            renderBars();
+            res();
+        }, 500);
+    });
+}
+
+/* -----------------------------
+   Étape du tri
+------------------------------*/
+async function bubbleStep() {
+    if (i >= values.length - 1) return true;
+
+    if (values[j] > values[j + 1]) {
+        await animateSwap(j, j + 1);
+    }
+
+    j++;
+
+    if (j >= values.length - i - 1) {
+        j = 0;
+        i++;
+    }
+
+    return false;
+}
+
+/* -----------------------------
+   Mode automatique
+------------------------------*/
+function startAuto() {
+    if (interval) return;
+
+    interval = setInterval(async () => {
+        let done = await bubbleStep();
+        if (done) stop();
+    }, 700);
+}
+
+function stop() {
+    clearInterval(interval);
+    interval = null;
+}
+
+/* -----------------------------
+   Boutons
+------------------------------*/
+document.getElementById("loadBtn").onclick = () => {
+    stop();
+    i = 0; 
+    j = 0;
+
+    values = generateRandomArray();  // ← ALEATOIRE 1..20
+
+    renderArray();
+    renderBars();
+};
+
+document.getElementById("autoBtn").onclick = startAuto;
+document.getElementById("stopBtn").onclick = stop;
+
+document.getElementById("stepBtn").onclick = async () => {
+    stop();
+    await bubbleStep();
+};
+
+/* Initialisation */
+values = generateRandomArray();
+renderArray();
+renderBars();
+</script>
+
+</body>
+</html>
